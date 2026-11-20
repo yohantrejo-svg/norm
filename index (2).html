@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sitio académico sobre NTC ISO 9000, ISO 9001, ISO 45001, ISO 14001 e ISO 19011 — normas internacionales de gestión." />
+  <title>Normas ISO de Gestión | Proyecto Académico</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS Modular -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/normas.css" />
+  <link rel="stylesheet" href="css/caso.css" />
+  <link rel="stylesheet" href="css/videos.css" />
+  <link rel="stylesheet" href="css/referencias.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ESTILOS LOCALES: Planeta interactivo con esferas orbitando
+       (prefijo .hero-globe__ aislado para evitar conflictos)
+  ═══════════════════════════════════════════════════════════ -->
+  <style>
+    .hero-globe {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+    }
+    .hero-globe__canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: block;
+      pointer-events: none;
+    }
+    .hero-globe__orbiter {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      height: 100px;
+      margin: -50px 0 0 -50px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      background: radial-gradient(circle at 32% 28%,
+                    rgba(255,255,255,0.42) 0%,
+                    var(--norm-color, #0085CA) 48%,
+                    rgba(0,0,0,0.38) 130%);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35),
+                  inset 0 -5px 0 rgba(0,0,0,0.20);
+      display: grid;
+      place-content: center;
+      text-align: center;
+      line-height: 1.05;
+      cursor: pointer;
+      z-index: 5;
+      will-change: transform;
+      transition: filter .2s ease;
+    }
+    .hero-globe__orbiter:hover,
+    .hero-globe__orbiter:focus-visible {
+      filter: brightness(1.15);
+      outline: none;
+    }
+    .hero-globe__orbiter b {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .hero-globe__orbiter small {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.92;
+      max-width: 82px;
+      margin: 3px auto 0;
+    }
+    @media (max-width: 900px) {
+      .hero-globe { max-width: 440px; }
+      .hero-globe__orbiter { width: 84px; height: 84px; margin: -42px 0 0 -42px; }
+      .hero-globe__orbiter b { font-size: 1.15rem; }
+      .hero-globe__orbiter small { font-size: 0.56rem; max-width: 70px; }
+    }
+    @media (max-width: 560px) {
+      .hero-globe { max-width: 340px; }
+      .hero-globe__orbiter { width: 72px; height: 72px; margin: -36px 0 0 -36px; }
+      .hero-globe__orbiter b { font-size: 0.98rem; }
+      .hero-globe__orbiter small { font-size: 0.52rem; max-width: 60px; }
+    }
+  </style>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ESTILOS LOCALES: Mejoras de diagramas, Flip Cards (ISO 9000),
+       PHVA completo (ISO 9001) y Jerarquía interactiva (ISO 45001)
+       (prefijos .iso-enh-* / .iso-flip-* / .iso-hier-* aislados)
+  ═══════════════════════════════════════════════════════════ -->
+  <style>
+    /* 1. Agrandar contenedores y gráficas de las 5 normas ISO */
+    .tab-panel .norm-panel-layout.iso-enh-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+      gap: 2.25rem;
+      align-items: center;
+    }
+    .tab-panel .norm-panel-layout.iso-enh-layout--cards {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+      align-items: start;
+    }
+    .tab-panel .norm-panel-layout.iso-enh-layout .norm-diagram-wrapper.iso-enh-diagram-box {
+      width: 100%;
+      max-width: 100%;
+      padding: 1.85rem;
+      box-sizing: border-box;
+    }
+    .tab-panel .norm-diagram-wrapper.iso-enh-diagram-box .norm-diagram-svg.iso-enh-svg {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    @media (max-width: 980px) {
+      .tab-panel .norm-panel-layout.iso-enh-layout,
+      .tab-panel .norm-panel-layout.iso-enh-layout--cards {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+      .tab-panel .norm-diagram-wrapper.iso-enh-diagram-box .norm-diagram-svg.iso-enh-svg {
+        max-width: 440px;
+      }
+    }
+    @media (max-width: 600px) {
+      .tab-panel .norm-panel-layout.iso-enh-layout .norm-diagram-wrapper.iso-enh-diagram-box {
+        padding: 1.15rem;
+      }
+      .tab-panel .norm-diagram-wrapper.iso-enh-diagram-box .norm-diagram-svg.iso-enh-svg {
+        max-width: 100%;
+      }
+    }
+
+    /* 2. Tarjetas giratorias (Flip Cards) — 7 Principios ISO 9000 */
+    .iso-flip-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0369A1;
+      background: #F0F9FF;
+      border: 1px dashed #BAE6FD;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      margin: 0 0 1rem;
+    }
+    .iso-flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 0.95rem;
+      width: 100%;
+    }
+    @media (max-width: 460px) {
+      .iso-flip-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .iso-flip-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      min-height: 192px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      perspective: 1000px;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+    .iso-flip-card:focus-visible {
+      outline: 3px solid #0085CA;
+      outline-offset: 3px;
+      border-radius: 14px;
+    }
+    .iso-flip-card__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 192px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .iso-flip-card.is-flipped .iso-flip-card__inner,
+    .iso-flip-card[aria-pressed="true"] .iso-flip-card__inner {
+      transform: rotateY(180deg);
+    }
+    .iso-flip-card__face {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      padding: 1rem 1.05rem;
+      box-sizing: border-box;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .iso-flip-card__face--front {
+      background: linear-gradient(145deg, #F0F9FF 0%, #E0F2FE 100%);
+      border: 1.5px solid #BAE6FD;
+      box-shadow: 0 4px 14px rgba(11, 37, 69, 0.05);
+    }
+    .iso-flip-card:nth-child(even) .iso-flip-card__face--front {
+      background: linear-gradient(145deg, #F0FDFA 0%, #E0F2FE 100%);
+      border-color: #BAE6FD;
+    }
+    .iso-flip-card:hover .iso-flip-card__face--front {
+      border-color: #7DD3FC;
+      box-shadow: 0 8px 20px rgba(0, 133, 202, 0.12);
+    }
+    .iso-flip-card__num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #BAE6FD;
+      color: #0085CA;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+    .iso-flip-card__title {
+      display: block;
+      margin: 0.45rem 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #0B2545;
+    }
+    .iso-flip-card__cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #0369A1;
+      opacity: 0.9;
+    }
+    .iso-flip-card__face--back {
+      transform: rotateY(180deg);
+      background: linear-gradient(145deg, #E0F2FE 0%, #F0FDFA 100%);
+      border: 1.5px solid #7DD3FC;
+      box-shadow: 0 8px 22px rgba(11, 37, 69, 0.09);
+      justify-content: center;
+      gap: 0.55rem;
+    }
+    .iso-flip-card__def {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.45;
+      font-weight: 500;
+      color: #0B2545;
+    }
+    .iso-flip-card__back-cue {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #0369A1;
+      opacity: 0.82;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .iso-flip-card__inner {
+        transition: none;
+      }
+    }
+
+    /* 4. Jerarquía de Controles Interactiva (ISO 45001) */
+    .iso-hier-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #9A3412;
+      background: #FFF7ED;
+      border: 1px dashed #FDBA74;
+      border-radius: 999px;
+      padding: 0.32rem 0.9rem;
+      margin: 0 0 0.85rem;
+    }
+    .iso-hier-svg {
+      overflow: visible;
+    }
+    .iso-hier-level {
+      cursor: pointer;
+      outline: none;
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: transform 0.22s ease, filter 0.22s ease;
+    }
+    .iso-hier-level:hover {
+      transform: scale(1.025);
+      filter: brightness(1.05);
+    }
+    .iso-hier-level .iso-hier-poly {
+      stroke: transparent;
+      stroke-width: 2.5;
+      transition: stroke 0.2s ease;
+    }
+    .iso-hier-level:focus-visible .iso-hier-poly,
+    .iso-hier-level.is-selected .iso-hier-poly {
+      stroke: #0B2545;
+      stroke-width: 2.8;
+    }
+    .iso-hier-level.is-selected {
+      transform: scale(1.03);
+      filter: drop-shadow(0 6px 14px rgba(11, 37, 69, 0.22));
+    }
+    .iso-hier-desc {
+      margin-top: 1.15rem;
+      padding: 1rem 1.2rem;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-left: 5px solid #EA580C;
+      border-radius: 12px;
+      text-align: left;
+      transition: border-left-color 0.25s ease;
+    }
+    .iso-hier-desc__badge {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0B2545;
+      background: #E2E8F0;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.45rem;
+    }
+    .iso-hier-desc__title {
+      margin: 0 0 0.35rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0B2545;
+    }
+    .iso-hier-desc__text {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #334155;
+    }
+  </style>
+<script src="/_aistudio-iframe.js?v=29045eb3"></script></head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVBAR FIJA
+════════════════════════════════════════════════════════════ -->
+<header id="navbar" class="navbar" role="banner">
+  <div class="container navbar__container">
+    <a href="#inicio" class="navbar__logo" aria-label="Inicio — ISO Gestión">
+      <div class="navbar__logo-icon" aria-hidden="true">ISO</div>
+      <div class="navbar__logo-text">
+        ISO Gestión
+        <span>Normas de Gestión Internacional</span>
+      </div>
+    </a>
+
+    <nav class="navbar__nav" aria-label="Navegación principal">
+      <ul class="navbar__list" role="list">
+        <li><a href="#inicio"      class="navbar__link" data-nav="inicio">Inicio</a></li>
+        <li><a href="#normas"      class="navbar__link" data-nav="normas">Normas ISO</a></li>
+        <li><a href="#caso"        class="navbar__link" data-nav="caso">Video Grupal</a></li>
+        <li><a href="#videos"      class="navbar__link" data-nav="videos">Videos</a></li>
+        <li><a href="#referencias" class="navbar__link" data-nav="referencias">Referencias</a></li>
+      </ul>
+    </nav>
+
+    <button class="navbar__hamburger" id="hamburger-btn"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            aria-controls="navbar-drawer">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Overlay del drawer -->
+<div id="navbar-overlay" class="navbar__overlay" aria-hidden="true"></div>
+
+<!-- Drawer móvil -->
+<div id="navbar-drawer" class="navbar__drawer" aria-hidden="true" aria-label="Menú de navegación">
+  <div class="navbar__drawer-header">
+    <a href="#inicio" class="navbar__drawer-logo">ISO Gestión</a>
+    <button class="navbar__drawer-close" id="drawer-close" aria-label="Cerrar menú">✕</button>
+  </div>
+  <ul class="navbar__drawer-list" role="list">
+    <li><a href="#inicio"      class="navbar__drawer-link">Inicio</a></li>
+    <li><a href="#normas"      class="navbar__drawer-link">Normas ISO</a></li>
+    <li><a href="#caso"        class="navbar__drawer-link">Video Grupal</a></li>
+    <li><a href="#videos"      class="navbar__drawer-link">Videos Individuales</a></li>
+    <li><a href="#referencias" class="navbar__drawer-link">Referencias</a></li>
+  </ul>
+</div>
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECCIÓN 1: INICIO — HERO + PLANETA INTERACTIVO
+════════════════════════════════════════════════════════════ -->
+<section id="inicio" class="hero" aria-labelledby="hero-heading">
+  <div class="container hero__container">
+
+    <!-- Contenido textual -->
+    <div class="hero__content">
+      <span class="hero__label" role="note">Proyecto Académico — Gestión Organizacional</span>
+
+      <h1 class="hero__title" id="hero-heading">
+        Normas ISO de
+        <span>Gestión Internacional</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Explora las cinco normas que definen los estándares mundiales de calidad, seguridad, ambiente y auditoría: NTC ISO 9000, ISO 9001, ISO 45001, ISO 14001 e ISO 19011.
+      </p>
+
+      <div class="hero__tags" role="list" aria-label="Áreas temáticas">
+        <span class="hero__tag hero__tag--quality" role="listitem">Calidad</span>
+        <span class="hero__tag hero__tag--safety"  role="listitem">Seguridad y Salud</span>
+        <span class="hero__tag hero__tag--env"     role="listitem">Medio Ambiente</span>
+        <span class="hero__tag hero__tag--audit"   role="listitem">Auditoría</span>
+      </div>
+
+      <div class="hero__actions">
+        <a href="#normas" class="btn btn-primary" data-scroll-to="normas">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Explorar Normas
+        </a>
+        <a href="#caso" class="btn btn-outline" data-scroll-to="caso">Ver Video Grupal</a>
+      </div>
+
+      <div class="hero__stats" aria-label="Datos del proyecto">
+        <div class="hero__stat">
+          <span class="hero__stat-number" data-counter="5">5</span>
+          <span class="hero__stat-label">Normas ISO</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number" data-counter="10">10</span>
+          <span class="hero__stat-label">Cláusulas HLS</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number" data-counter="7">7</span>
+          <span class="hero__stat-label">Principios de Calidad</span>
+        </div>
+      </div>
+    </div><!-- /hero__content -->
+
+    <!-- Planeta giratorio interactivo (reemplaza el SVG estático) -->
+    <div class="hero__map fade-in fade-in-delay-2">
+      <div class="hero__map-wrapper">
+        <p class="hero__map-title">Mapa de relaciones — Haz clic en una norma</p>
+
+        <div class="hero-globe" id="heroGlobe">
+          <canvas class="hero-globe__canvas" id="heroGlobeCanvas" aria-hidden="true"></canvas>
+
+          <button class="hero-globe__orbiter" data-tab="iso9000" data-globe-tab="iso9000"
+                  style="--norm-color:#0085CA" aria-label="Ir a la norma ISO 9000">
+            <b>9000</b><small>Vocabulario</small>
+          </button>
+          <button class="hero-globe__orbiter" data-tab="iso9001" data-globe-tab="iso9001"
+                  style="--norm-color:#0B2545" aria-label="Ir a la norma ISO 9001">
+            <b>9001</b><small>Calidad</small>
+          </button>
+          <button class="hero-globe__orbiter" data-tab="iso45001" data-globe-tab="iso45001"
+                  style="--norm-color:#EA580C" aria-label="Ir a la norma ISO 45001">
+            <b>45001</b><small>SST</small>
+          </button>
+          <button class="hero-globe__orbiter" data-tab="iso14001" data-globe-tab="iso14001"
+                  style="--norm-color:#0D9488" aria-label="Ir a la norma ISO 14001">
+            <b>14001</b><small>Ambiente</small>
+          </button>
+          <button class="hero-globe__orbiter" data-tab="iso19011" data-globe-tab="iso19011"
+                  style="--norm-color:#7C3AED" aria-label="Ir a la norma ISO 19011">
+            <b>19011</b><small>Auditoría</small>
+          </button>
+        </div>
+      </div>
+    </div><!-- /hero__map -->
+  </div><!-- /hero__container -->
+
+  <!-- Indicador de scroll -->
+  <a href="#normas" class="hero__scroll-hint" aria-label="Ir a la sección de Normas ISO">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M19 9l-7 7-7-7"/>
+    </svg>
+  </a>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECCIÓN 2: NORMAS ISO — PESTAÑAS INTERACTIVAS
+════════════════════════════════════════════════════════════ -->
+<section id="normas" class="section normas" aria-labelledby="normas-heading">
+  <div class="container">
+
+    <div class="section-header fade-in">
+      <div class="section-divider" aria-hidden="true"></div>
+      <h2 id="normas-heading">Normas ISO de Gestión</h2>
+      <p class="section-subtitle">
+        Selecciona una norma para explorar su definición, propósito y estructura completa de numerales.
+      </p>
+    </div>
+
+    <!-- ── Barra de Tabs ──────────────────────────────────── -->
+    <div class="tabs-nav fade-in" role="tablist" aria-label="Normas ISO">
+
+      <button class="tab-btn" role="tab" id="tab-iso9000"
+              aria-selected="true" aria-controls="panel-iso9000"
+              data-tab="iso9000" tabindex="0">
+        <span class="tab-btn__icon" aria-hidden="true">9000</span>
+        NTC ISO 9000
+      </button>
+
+      <button class="tab-btn" role="tab" id="tab-iso9001"
+              aria-selected="false" aria-controls="panel-iso9001"
+              data-tab="iso9001" tabindex="-1">
+        <span class="tab-btn__icon" aria-hidden="true">9001</span>
+        ISO 9001
+      </button>
+
+      <button class="tab-btn" role="tab" id="tab-iso45001"
+              aria-selected="false" aria-controls="panel-iso45001"
+              data-tab="iso45001" tabindex="-1">
+        <span class="tab-btn__icon" aria-hidden="true">45001</span>
+        ISO 45001
+      </button>
+
+      <button class="tab-btn" role="tab" id="tab-iso14001"
+              aria-selected="false" aria-controls="panel-iso14001"
+              data-tab="iso14001" tabindex="-1">
+        <span class="tab-btn__icon" aria-hidden="true">14001</span>
+        ISO 14001
+      </button>
+
+      <button class="tab-btn" role="tab" id="tab-iso19011"
+              aria-selected="false" aria-controls="panel-iso19011"
+              data-tab="iso19011" tabindex="-1">
+        <span class="tab-btn__icon" aria-hidden="true">19011</span>
+        ISO 19011
+      </button>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 1: NTC ISO 9000
+    ══════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-iso9000" role="tabpanel"
+         aria-labelledby="tab-iso9000" aria-hidden="false">
+
+      <div class="norm-panel-layout iso-enh-layout iso-enh-layout--cards">
+        <!-- Descripción -->
+        <div class="norm-panel-info">
+          <span class="norm-badge norm-badge--9000 norm-badge--lg">NTC ISO 9000:2015</span>
+          <h3>¿Qué es NTC ISO 9000?</h3>
+          <p>
+            La NTC ISO 9000:2015 es la norma de <strong>fundamentos y vocabulario</strong> del sistema de gestión de la calidad (SGC). No es certificable por sí sola: su función es proporcionar los conceptos, principios y definiciones que sirven de base común para todas las demás normas de la familia ISO 9000.
+          </p>
+          <p>
+            En términos sencillos: es el <em>diccionario y la filosofía</em> que todos los que trabajan con gestión de calidad deben compartir. Garantiza que cuando una empresa dice "proceso", "producto" o "mejora continua", esté hablando exactamente de lo mismo que un auditor o un proveedor en cualquier parte del mundo.
+          </p>
+          <p>
+            Define los <strong>7 Principios de Gestión de la Calidad</strong> que orientan la cultura organizacional y el comportamiento de los sistemas de gestión.
+          </p>
+        </div>
+
+        <!-- Tarjetas interactivas giratorias: 7 Principios de Gestión de la Calidad -->
+        <div class="norm-diagram-wrapper iso-enh-diagram-box" id="iso9000FlipWrapper">
+          <p class="norm-diagram-title">7 Principios de Gestión de la Calidad</p>
+          <p class="iso-flip-hint">Haz clic en cada principio para ver su definición</p>
+
+          <div class="iso-flip-grid" id="iso9000FlipGrid">
+            <button type="button" class="iso-flip-card" aria-pressed="false" aria-label="Principio 1: Enfoque al cliente. Clic para ver definición">
+              <div class="iso-flip-card__inner">
+                <div class="iso-flip-card__face iso-flip-card__face--front">
+                  <span class="iso-flip-card__num">1</span>
+                  <strong class="iso-flip-card__title">Enfoque al cliente</strong>
+                  <span class="iso-flip-card__cue">↻ Clic para ver definición</span>
+                </div>
+                <div class="iso-flip-card__face iso-flip-card__face--back">
+                  <p class="iso-flip-card__def">Cumplir los requisitos del cliente y tratar de superar sus expectativas.</p>
+                  <span class="iso-flip-card__back-cue">↺ Clic para volver</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="iso-flip-card" aria-pressed="false" aria-label="Principio 2: Liderazgo. Clic para ver definición">
+              <div class="iso-flip-card__inner">
+                <div class="iso-flip-card__face iso-flip-card__face--front">
+                  <span class="iso-flip-card__num">2</span>
+                  <strong class="iso-flip-card__title">Liderazgo</strong>
+                  <span class="iso-flip-card__cue">↻ Clic para ver definición</span>
+                </div>
+                <div class="iso-flip-card__face iso-flip-card__face--back">
+                  <p class="iso-flip-card__def">Los líderes fijan un propósito y una dirección comunes y crean las condiciones para lograr los objetivos.</p>
+                  <span class="iso-flip-card__back-cue">↺ Clic para volver</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="iso-flip-card" aria-pressed="false" aria-label="Principio 3: Compromiso de las personas. Clic para ver definición">
+              <div class="iso-flip-card__inner">
+                <div class="iso-flip-card__face iso-flip-card__face--front">
+                  <span class="iso-flip-card__num">3</span>
+                  <strong class="iso-flip-card__title">Compromiso de las personas</strong>
+                  <span class="iso-flip-card__cue">↻ Clic para ver definición</span>
+                </div>
+                <div class="iso-flip-card__face iso-flip-card__face--back">
+                  <p class="iso-flip-card__def">Personas competentes, empoderadas y comprometidas en todos los niveles.</p>
+                  <span class="iso-flip-card__back-cue">↺ Clic para volver</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="iso-flip-card" aria-pressed="false" aria-label="Principio 4: Enfoque a procesos. Clic para ver definición">
+              <div class="iso-flip-card__inner">
+                <div class="iso-flip-card__face iso-flip-card__face--front">
+                  <span class="iso-flip-card__num">4</span>
+                  <strong class="iso-flip-card__title">Enfoque a procesos</strong>
+                  <span class="iso-flip-card__cue">↻ Clic para ver definición</span>
+                </div>
+                <div class="iso-flip-card__face iso-flip-card__face--back">
+                  <p class="iso-flip-card__def">Las actividades se gestionan como procesos interrelacionados que funcionan como un sistema.</p>
+                  <span class="iso-flip-card__back-cue">↺ Clic para volver</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="iso-flip-card" aria-pressed="false" aria-label="Principio 5: Mejora. Clic para ver definición">
+              <div class="iso-flip-card__inner">
+                <div class="iso-flip-card__face iso-flip-card__face--front">
+                  <span class="iso-flip-card__num">5</span>
+                  <strong class="iso-flip-card__title">Mejora</strong>
+                  <span class="iso-flip-card__cue">↻ Clic para ver definición</span>
+                </div>
+                <div class="iso-flip-card__face iso-flip-card__face--back">
+                  <p class="iso-flip-card__def">Las organizaciones exitosas se enfocan de forma continua en mejorar.</p>
+                  <span class="iso-flip-card__back-cue">↺ Clic para volver</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="iso-flip-card" aria-pressed="false" aria-label="Principio 6: Decisiones basadas en la evidencia. Clic para ver definición">
+              <div class="iso-flip-card__inner">
+                <div class="iso-flip-card__face iso-flip-card__face--front">
+                  <span class="iso-flip-card__num">6</span>
+                  <strong class="iso-flip-card__title">Decisiones basadas en la evidencia</strong>
+                  <span class="iso-flip-card__cue">↻ Clic para ver definición</span>
+                </div>
+                <div class="iso-flip-card__face iso-flip-card__face--back">
+                  <p class="iso-flip-card__def">Las decisiones se apoyan en el análisis de datos e información.</p>
+                  <span class="iso-flip-card__back-cue">↺ Clic para volver</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="iso-flip-card" aria-pressed="false" aria-label="Principio 7: Gestión de las relaciones. Clic para ver definición">
+              <div class="iso-flip-card__inner">
+                <div class="iso-flip-card__face iso-flip-card__face--front">
+                  <span class="iso-flip-card__num">7</span>
+                  <strong class="iso-flip-card__title">Gestión de las relaciones</strong>
+                  <span class="iso-flip-card__cue">↻ Clic para ver definición</span>
+                </div>
+                <div class="iso-flip-card__face iso-flip-card__face--back">
+                  <p class="iso-flip-card__def">Gestionar las relaciones con proveedores y otras partes interesadas para lograr el éxito sostenido.</p>
+                  <span class="iso-flip-card__back-cue">↺ Clic para volver</span>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estructura de Numerales -->
+      <h4 class="norm-structure-title">Estructura de la Norma por Numerales</h4>
+      <div class="accordion" role="list">
+
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-num">1</span>
+            <span class="accordion-header-label">Objeto y campo de aplicación</span>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>Establece el ámbito de aplicación de la norma: proporcionar los conceptos, principios y vocabulario fundamentales para los sistemas de gestión de la calidad (SGC). Es aplicable a toda organización que necesite comprender y comunicar los fundamentos de los SGC.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-num">2</span>
+            <span class="accordion-header-label">Conceptos fundamentales y principios de gestión de la calidad</span>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>Núcleo filosófico de la norma. Presenta los conceptos base y los 7 principios que rigen los SGC modernos.</p>
+              <div class="accordion-subitems">
+                <div class="accordion-subitem">
+                  <span class="accordion-subitem-num">2.1</span>
+                  <span class="accordion-subitem-text"><strong>General:</strong> introduce la importancia de un vocabulario común para facilitar la comprensión y la comunicación en los SGC.</span>
+                </div>
+                <div class="accordion-subitem">
+                  <span class="accordion-subitem-num">2.2</span>
+                  <span class="accordion-subitem-text"><strong>Conceptos fundamentales:</strong> organización y su contexto, partes interesadas, productos y servicios, calidad, contexto de la organización, liderazgo y compromiso, gestión por procesos, mejora y toma de decisiones.</span>
+                </div>
+                <div class="accordion-subitem">
+                  <span class="accordion-subitem-num">2.3</span>
+                  <span class="accordion-subitem-text"><strong>Principios de gestión de la calidad:</strong> enfoque al cliente, liderazgo, compromiso de las personas, enfoque a procesos, mejora, toma de decisiones basada en la evidencia, y gestión de las relaciones.</span>
+                </div>
+                <div class="accordion-subitem">
+                  <span class="accordion-subitem-num">2.4</span>
+                  <span class="accordion-subitem-text"><strong>Desarrollo de los SGC:</strong> explica cómo los conceptos y principios se integran para desarrollar, implementar y mejorar un sistema de gestión de la calidad efectivo.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-num">3</span>
+            <span class="accordion-header-label">Términos y definiciones</span>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>Contiene más de 150 términos organizados por grupos conceptuales, estableciendo el lenguaje normativo común para toda la familia ISO 9000.</p>
+              <div class="accordion-subitems">
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.1</span><span class="accordion-subitem-text">Términos relativos a la persona u organización (cliente, proveedor, parte interesada, auditor, etc.)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.2</span><span class="accordion-subitem-text">Términos relativos a la actividad (mejora continua, gestión, planificación, control de calidad, aseguramiento)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.3</span><span class="accordion-subitem-text">Términos relativos al proceso (proceso, proyecto, procedimiento, contrato)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.4</span><span class="accordion-subitem-text">Términos relativos al sistema (sistema, infraestructura, ambiente de trabajo, política, objetivo)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.5</span><span class="accordion-subitem-text">Términos relativos al requisito (requisito, expectativa, especificación, clase, calidad)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.6</span><span class="accordion-subitem-text">Términos relativos al resultado (eficiencia, eficacia, conformidad, no conformidad, defecto)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.7</span><span class="accordion-subitem-text">Términos relativos a los datos, la información y la documentación (información documentada, registro, evidencia objetiva)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.8</span><span class="accordion-subitem-text">Términos relativos al cliente (retroalimentación, reclamación, satisfacción del cliente)</span></div>
+                <div class="accordion-subitem"><span class="accordion-subitem-num">3.9–3.12</span><span class="accordion-subitem-text">Términos relativos a características, determinación, acciones y auditoría.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-num">A</span>
+            <span class="accordion-header-label">Anexo A — Relaciones entre conceptos</span>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>Presenta diagramas visuales que muestran las relaciones entre los conceptos definidos en la cláusula 3, facilitando la comprensión de cómo se interconectan los términos del SGC.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /panel-iso9000 -->
+
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 2: ISO 9001
+    ══════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-iso9001" role="tabpanel"
+         aria-labelledby="tab-iso9001" aria-hidden="true" style="display:none">
+
+      <div class="norm-panel-layout iso-enh-layout">
+        <div class="norm-panel-info">
+          <span class="norm-badge norm-badge--9001 norm-badge--lg">ISO 9001:2015</span>
+          <h3>¿Qué es ISO 9001?</h3>
+          <p>
+            ISO 9001:2015 es la norma internacional que especifica los <strong>requisitos para un Sistema de Gestión de la Calidad (SGC)</strong>. Es la única norma de la familia ISO 9000 con la que una organización puede certificarse, y es la más utilizada en el mundo con más de un millón de certificados emitidos.
+          </p>
+          <p>
+            En términos sencillos: le dice a una organización <em>qué debe hacer</em> para garantizar que sus productos y servicios cumplan consistentemente los requisitos del cliente y los legales aplicables. Se basa en el enfoque a procesos y el ciclo <strong>PHVA</strong> (Planear – Hacer – Verificar – Actuar).
+          </p>
+          <p>
+            Adopta la <strong>Estructura de Alto Nivel (HLS)</strong>, que facilita su integración con otras normas ISO como la 45001 y la 14001.
+          </p>
+        </div>
+
+        <!-- Diagrama PHVA -->
+        <div class="norm-diagram-wrapper iso-enh-diagram-box">
+          <p class="norm-diagram-title">Ciclo PHVA — Cláusulas 4 al 10</p>
+          <svg class="norm-diagram-svg iso-enh-svg" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Diagrama del ciclo PHVA con las palabras completas Planificar, Hacer, Verificar y Actuar">
+            <!-- Sectores del ciclo PHVA (donut: cx=180, cy=180, R_outer=156, R_inner=68) -->
+            <!-- Planificar: 270°→360° -->
+            <path d="M 180,24 A 156,156 0 0,1 336,180 L 248,180 A 68,68 0 0,0 180,112 Z"
+                  fill="#0085CA" opacity="0.9"/>
+            <!-- Hacer: 0°→90° -->
+            <path d="M 336,180 A 156,156 0 0,1 180,336 L 180,248 A 68,68 0 0,0 248,180 Z"
+                  fill="#0D9488" opacity="0.9"/>
+            <!-- Verificar: 90°→180° -->
+            <path d="M 180,336 A 156,156 0 0,1 24,180 L 112,180 A 68,68 0 0,0 180,248 Z"
+                  fill="#7C3AED" opacity="0.85"/>
+            <!-- Actuar: 180°→270° -->
+            <path d="M 24,180 A 156,156 0 0,1 180,24 L 180,112 A 68,68 0 0,0 112,180 Z"
+                  fill="#EA580C" opacity="0.85"/>
+            <!-- Círculo central -->
+            <circle cx="180" cy="180" r="62" fill="white"/>
+            <text x="180" y="162" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif"
+                  font-size="14" font-weight="800" fill="#0B2545">PHVA</text>
+            <text x="180" y="179" text-anchor="middle" font-family="'Inter',sans-serif"
+                  font-size="10.5" font-weight="600" fill="#64748B">ISO 9001</text>
+            <!-- Etiquetas completas PHVA -->
+            <text x="246" y="96"  text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="700" fill="white">Planificar</text>
+            <text x="246" y="115" text-anchor="middle" font-family="'Inter',sans-serif" font-size="10.5" fill="rgba(255,255,255,0.9)">Cl. 6-7</text>
+            <text x="246" y="256" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="700" fill="white">Hacer</text>
+            <text x="246" y="275" text-anchor="middle" font-family="'Inter',sans-serif" font-size="10.5" fill="rgba(255,255,255,0.9)">Cl. 8</text>
+            <text x="114" y="256" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="700" fill="white">Verificar</text>
+            <text x="114" y="275" text-anchor="middle" font-family="'Inter',sans-serif" font-size="10.5" fill="rgba(255,255,255,0.9)">Cl. 9</text>
+            <text x="114" y="96"  text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="700" fill="white">Actuar</text>
+            <text x="114" y="115" text-anchor="middle" font-family="'Inter',sans-serif" font-size="10.5" fill="rgba(255,255,255,0.9)">Cl. 10</text>
+            <!-- Cl. 4-5 en el centro -->
+            <text x="180" y="198" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8.8" fill="#64748B">Cl. 4–5: Contexto y</text>
+            <text x="180" y="210" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8.8" fill="#64748B">Liderazgo (soporte)</text>
+          </svg>
+        </div>
+      </div>
+
+      <h4 class="norm-structure-title">Estructura de la Norma por Numerales</h4>
+      <div class="accordion" role="list">
+
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">1</span><span class="accordion-header-label">Objeto y campo de aplicación</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Especifica los requisitos para un SGC cuando una organización necesita demostrar su capacidad para proporcionar consistentemente productos y servicios que satisfagan los requisitos del cliente y los legales aplicables, y cuando aspira a aumentar la satisfacción del cliente.</p></div></div></div>
+
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">2</span><span class="accordion-header-label">Referencias normativas</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>La única referencia normativa de ISO 9001 es la <strong>ISO 9000:2015</strong>, que provee el vocabulario y los fundamentos necesarios para aplicar correctamente los requisitos de esta norma.</p></div></div></div>
+
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">3</span><span class="accordion-header-label">Términos y definiciones</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Remite a ISO 9000:2015 para todos los términos y definiciones aplicables. Introduce terminología como <em>salidas conformes</em>, <em>partes interesadas pertinentes</em> y <em>proveedor externo</em>.</p></div></div></div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false"><span class="accordion-num">4</span><span class="accordion-header-label">Contexto de la organización</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="accordion-body"><div class="accordion-body-inner">
+            <p>Establece que la organización debe entender su entorno interno y externo antes de diseñar su SGC.</p>
+            <div class="accordion-subitems">
+              <div class="accordion-subitem"><span class="accordion-subitem-num">4.1</span><span class="accordion-subitem-text">Comprensión de la organización y su contexto: identificar cuestiones internas y externas pertinentes para el SGC.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">4.2</span><span class="accordion-subitem-text">Comprensión de las necesidades y expectativas de las partes interesadas: identificar quiénes son y qué necesitan.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">4.3</span><span class="accordion-subitem-text">Determinación del alcance del SGC: qué productos/servicios y qué partes de la organización cubre el sistema.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">4.4</span><span class="accordion-subitem-text">Sistema de gestión de la calidad y sus procesos: establecer, implementar, mantener y mejorar el SGC con enfoque basado en procesos.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false"><span class="accordion-num">5</span><span class="accordion-header-label">Liderazgo</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="accordion-body"><div class="accordion-body-inner">
+            <div class="accordion-subitems">
+              <div class="accordion-subitem"><span class="accordion-subitem-num">5.1</span><span class="accordion-subitem-text">Liderazgo y compromiso: la alta dirección debe demostrar responsabilidad sobre la eficacia del SGC y orientarlo hacia el cliente.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">5.2</span><span class="accordion-subitem-text">Política de calidad: establecer, comunicar y mantener una política coherente con el contexto y los objetivos estratégicos.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">5.3</span><span class="accordion-subitem-text">Roles, responsabilidades y autoridades: asignar y comunicar responsabilidades para el SGC en toda la organización.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false"><span class="accordion-num">6</span><span class="accordion-header-label">Planificación</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="accordion-body"><div class="accordion-body-inner">
+            <div class="accordion-subitems">
+              <div class="accordion-subitem"><span class="accordion-subitem-num">6.1</span><span class="accordion-subitem-text">Acciones para abordar riesgos y oportunidades: identificar y planificar acciones que prevengan efectos no deseados y aprovechen oportunidades.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">6.2</span><span class="accordion-subitem-text">Objetivos de la calidad y planificación para lograrlos: definir objetivos medibles, coherentes con la política, y planes de acción.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">6.3</span><span class="accordion-subitem-text">Planificación de los cambios: gestionar de forma controlada los cambios que afecten al SGC.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false"><span class="accordion-num">7</span><span class="accordion-header-label">Apoyo</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="accordion-body"><div class="accordion-body-inner">
+            <div class="accordion-subitems">
+              <div class="accordion-subitem"><span class="accordion-subitem-num">7.1</span><span class="accordion-subitem-text">Recursos: personas, infraestructura, ambiente de trabajo, recursos de seguimiento y medición, conocimiento organizacional.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">7.2</span><span class="accordion-subitem-text">Competencia: determinar, mantener y documentar la competencia del personal que afecta el desempeño del SGC.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">7.3</span><span class="accordion-subitem-text">Toma de conciencia: el personal debe conocer la política, objetivos y su contribución al SGC.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">7.4</span><span class="accordion-subitem-text">Comunicación: definir qué comunicar, cuándo, a quién y cómo, tanto interna como externamente.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">7.5</span><span class="accordion-subitem-text">Información documentada: controlar y mantener la información requerida por la norma y por la organización.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false"><span class="accordion-num">8</span><span class="accordion-header-label">Operación</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="accordion-body"><div class="accordion-body-inner">
+            <div class="accordion-subitems">
+              <div class="accordion-subitem"><span class="accordion-subitem-num">8.1</span><span class="accordion-subitem-text">Planificación y control operacional: planificar, implementar, controlar y mantener los procesos.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">8.2</span><span class="accordion-subitem-text">Requisitos para los productos y servicios: comunicación con el cliente, determinación de requisitos, revisión.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">8.3</span><span class="accordion-subitem-text">Diseño y desarrollo: proceso sistemático para diseñar nuevos productos/servicios o modificar los existentes.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">8.4</span><span class="accordion-subitem-text">Control de proveedores externos: evaluar, seleccionar y controlar productos/servicios de terceros.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">8.5</span><span class="accordion-subitem-text">Producción y provisión del servicio: controlar las condiciones de producción incluyendo identificación, trazabilidad y preservación.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">8.6–8.7</span><span class="accordion-subitem-text">Liberación de productos/servicios y control de salidas no conformes: verificar que se cumplen los requisitos antes de entregar al cliente.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false"><span class="accordion-num">9</span><span class="accordion-header-label">Evaluación del desempeño</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="accordion-body"><div class="accordion-body-inner">
+            <div class="accordion-subitems">
+              <div class="accordion-subitem"><span class="accordion-subitem-num">9.1</span><span class="accordion-subitem-text">Seguimiento, medición, análisis y evaluación: qué seguir, cuándo y cómo analizar los resultados (incluye satisfacción del cliente).</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">9.2</span><span class="accordion-subitem-text">Auditoría interna: planificar y ejecutar auditorías para verificar que el SGC cumple los requisitos.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">9.3</span><span class="accordion-subitem-text">Revisión por la dirección: la alta dirección revisa el SGC para asegurar su conveniencia, adecuación, eficacia y alineación estratégica.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false"><span class="accordion-num">10</span><span class="accordion-header-label">Mejora</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="accordion-body"><div class="accordion-body-inner">
+            <div class="accordion-subitems">
+              <div class="accordion-subitem"><span class="accordion-subitem-num">10.1</span><span class="accordion-subitem-text">General: la organización debe determinar oportunidades de mejora e implementar acciones necesarias.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">10.2</span><span class="accordion-subitem-text">No conformidad y acción correctiva: reaccionar ante no conformidades, investigar causas y corregir para evitar recurrencia.</span></div>
+              <div class="accordion-subitem"><span class="accordion-subitem-num">10.3</span><span class="accordion-subitem-text">Mejora continua: mejorar sistemáticamente la conveniencia, adecuación y eficacia del SGC.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+      </div>
+    </div><!-- /panel-iso9001 -->
+
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 3: ISO 45001
+    ══════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-iso45001" role="tabpanel"
+         aria-labelledby="tab-iso45001" aria-hidden="true" style="display:none">
+
+      <div class="norm-panel-layout iso-enh-layout">
+        <div class="norm-panel-info">
+          <span class="norm-badge norm-badge--45001 norm-badge--lg">ISO 45001:2018</span>
+          <h3>¿Qué es ISO 45001?</h3>
+          <p>
+            ISO 45001:2018 es la primera norma internacional para <strong>Sistemas de Gestión de la Seguridad y Salud en el Trabajo (SST)</strong>. Reemplazó a OHSAS 18001 y establece un marco para identificar peligros, evaluar riesgos y controlarlos, con el objetivo de prevenir accidentes, enfermedades laborales y muertes en el trabajo.
+          </p>
+          <p>
+            En términos sencillos: ayuda a las organizaciones a crear <em>lugares de trabajo más seguros y saludables</em>, involucrando activamente a los trabajadores en la identificación de peligros y la toma de decisiones que afectan su seguridad.
+          </p>
+          <p>
+            Adopta la misma <strong>Estructura de Alto Nivel (HLS)</strong> que ISO 9001 e ISO 14001, lo que facilita su implementación integrada. Un concepto clave es la <strong>jerarquía de controles</strong>: eliminar peligros antes de intentar controlarlos.
+          </p>
+        </div>
+
+        <!-- Diagrama: Jerarquía de Controles Interactiva -->
+        <div class="norm-diagram-wrapper iso-enh-diagram-box" id="iso45001HierWrapper">
+          <p class="norm-diagram-title">Jerarquía de Controles SST</p>
+          <p class="iso-hier-hint">Haz clic en cualquier nivel para ver su definición</p>
+          <svg class="norm-diagram-svg iso-enh-svg iso-hier-svg" id="iso45001HierSvg" viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg"
+               role="group" aria-label="Pirámide interactiva de jerarquía de controles de seguridad y salud en el trabajo">
+            <!-- Nivel 1: Eliminación (más efectivo) -->
+            <g class="iso-hier-level is-selected" role="button" tabindex="0" aria-pressed="true"
+               data-hier-badge="Nivel 1 · Más eficaz"
+               data-hier-color="#EA580C"
+               data-hier-title="Eliminar el peligro"
+               data-hier-desc="Quitar el peligro por completo. En la bodega: rediseñar el proceso para que nadie tenga que levantar bultos a mano.">
+              <polygon class="iso-hier-poly" points="75,12 375,12 352,58 98,58" fill="#EA580C" opacity="0.95"/>
+              <text x="225" y="40" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="14" font-weight="700" fill="white">1. Eliminación</text>
+            </g>
+            <!-- Nivel 2: Sustitución -->
+            <g class="iso-hier-level" role="button" tabindex="0" aria-pressed="false"
+               data-hier-badge="Nivel 2"
+               data-hier-color="#EA580C"
+               data-hier-title="Sustituir"
+               data-hier-desc="Cambiar por procesos, materiales o equipos menos peligrosos. En la bodega: pedir el producto en bultos de 25 kg.">
+              <polygon class="iso-hier-poly" points="98,63 352,63 330,109 120,109" fill="#EA580C" opacity="0.78"/>
+              <text x="225" y="91" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="13.5" font-weight="700" fill="white">2. Sustitución</text>
+            </g>
+            <!-- Nivel 3: Controles de ingeniería -->
+            <g class="iso-hier-level" role="button" tabindex="0" aria-pressed="false"
+               data-hier-badge="Nivel 3"
+               data-hier-color="#F59E0B"
+               data-hier-title="Controles de ingeniería"
+               data-hier-desc="Aislar a las personas del peligro y reorganizar el trabajo. En la bodega: usar un montacargas o un transportador de rodillos.">
+              <polygon class="iso-hier-poly" points="120,114 330,114 308,160 142,160" fill="#F59E0B" opacity="0.9"/>
+              <text x="225" y="142" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="12" font-weight="700" fill="white">3. Controles de ingeniería</text>
+            </g>
+            <!-- Nivel 4: Controles administrativos -->
+            <g class="iso-hier-level" role="button" tabindex="0" aria-pressed="false"
+               data-hier-badge="Nivel 4"
+               data-hier-color="#0D9488"
+               data-hier-title="Controles administrativos"
+               data-hier-desc="Procedimientos, señalización, pausas y formación. En la bodega: capacitar en levantamiento seguro y programar pausas activas.">
+              <polygon class="iso-hier-poly" points="142,165 308,165 286,211 164,211" fill="#0D9488" opacity="0.85"/>
+              <text x="225" y="185" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11.5" font-weight="700" fill="white">4. Controles</text>
+              <text x="225" y="200" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11.5" font-weight="700" fill="white">administrativos</text>
+            </g>
+            <!-- Nivel 5: EPP (menos efectivo) -->
+            <g class="iso-hier-level" role="button" tabindex="0" aria-pressed="false"
+               data-hier-badge="Nivel 5 · Menos eficaz"
+               data-hier-color="#0085CA"
+               data-hier-title="Equipos de protección personal (EPP)"
+               data-hier-desc="La última barrera, cuando lo anterior no basta. En la bodega: guantes y calzado de seguridad. La nota de la norma recuerda que en muchos países el EPP se entrega sin costo al trabajador.">
+              <polygon class="iso-hier-poly" points="164,216 286,216 268,262 182,262" fill="#0085CA" opacity="0.8"/>
+              <text x="225" y="244" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="12.5" font-weight="700" fill="white">5. EPP</text>
+            </g>
+            <!-- Labels efectividad -->
+            <text x="10" y="32"  font-family="'Inter',sans-serif" font-size="10.5" fill="#EA580C" font-weight="600">↑ Más</text>
+            <text x="10" y="45"  font-family="'Inter',sans-serif" font-size="10.5" fill="#EA580C" font-weight="600">efectivo</text>
+            <text x="10" y="234" font-family="'Inter',sans-serif" font-size="10.5" fill="#64748B" font-weight="600">↓ Menos</text>
+            <text x="10" y="247" font-family="'Inter',sans-serif" font-size="10.5" fill="#64748B" font-weight="600">efectivo</text>
+          </svg>
+          <div class="iso-hier-desc" id="iso45001HierDesc" aria-live="polite">
+            <span class="iso-hier-desc__badge" id="iso45001HierBadge">Nivel 1 · Más eficaz</span>
+            <h4 class="iso-hier-desc__title" id="iso45001HierTitle">Eliminar el peligro</h4>
+            <p class="iso-hier-desc__text" id="iso45001HierText">Quitar el peligro por completo. En la bodega: rediseñar el proceso para que nadie tenga que levantar bultos a mano.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="norm-structure-title">Estructura de la Norma por Numerales</h4>
+      <div class="accordion" role="list">
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">1</span><span class="accordion-header-label">Objeto y campo de aplicación</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Permite a las organizaciones de cualquier tamaño y sector implementar un SGSSyT para prevenir lesiones, enfermedades y muertes laborales, mejorando proactivamente el desempeño en SST.</p></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">4</span><span class="accordion-header-label">Contexto de la organización</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">4.1</span><span class="accordion-subitem-text">Comprensión de la organización y su contexto: factores internos/externos que afectan la SST.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">4.2</span><span class="accordion-subitem-text">Comprensión de las necesidades de trabajadores y partes interesadas: incluye requisitos legales de SST.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">4.3</span><span class="accordion-subitem-text">Alcance del sistema: qué actividades, instalaciones y trabajadores cubre el SGSSyT.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">4.4</span><span class="accordion-subitem-text">Sistema de gestión de la SST: establecer, implementar y mejorar el sistema con enfoque PHVA.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">5</span><span class="accordion-header-label">Liderazgo y participación de los trabajadores</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">5.1</span><span class="accordion-subitem-text">Liderazgo y compromiso de la alta dirección: responsabilidad visible sobre la SST.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">5.2</span><span class="accordion-subitem-text">Política de SST: compromiso con la prevención de lesiones, cumplimiento legal y mejora continua.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">5.3</span><span class="accordion-subitem-text">Roles, responsabilidades y autoridades organizacionales.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">5.4</span><span class="accordion-subitem-text"><strong>Consulta y participación de los trabajadores:</strong> elemento distintivo de ISO 45001; los trabajadores deben participar activamente en las decisiones de SST.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">6</span><span class="accordion-header-label">Planificación — Identificación de peligros y riesgos</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">6.1.1</span><span class="accordion-subitem-text">General: abordar riesgos y oportunidades del SGSSyT.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.1.2</span><span class="accordion-subitem-text">Identificación de peligros y evaluación de riesgos/oportunidades: proceso sistemático y continuo para anticipar daños.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.1.3</span><span class="accordion-subitem-text">Requisitos legales y otros: identificar y cumplir la legislación de SST aplicable.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.2</span><span class="accordion-subitem-text">Objetivos de SST y planificación: establecer metas medibles para mejorar el desempeño en SST.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">7–8</span><span class="accordion-header-label">Apoyo y Operación (incluye gestión de contratistas)</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">7</span><span class="accordion-subitem-text">Apoyo: recursos, competencia, toma de conciencia, comunicación e información documentada en SST.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">8.1</span><span class="accordion-subitem-text">Planificación y control operacional: aplicar la jerarquía de controles (eliminar → sustituir → ingeniería → administrativo → EPP).</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">8.1.3–8.1.6</span><span class="accordion-subitem-text">Gestión del cambio, contratación externa, adquisiciones y contratistas: controlar los riesgos SST en toda la cadena.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">8.2</span><span class="accordion-subitem-text">Preparación y respuesta ante emergencias: planificar cómo responder ante incidentes, accidentes o situaciones de emergencia.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">9</span><span class="accordion-header-label">Evaluación del desempeño</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Seguimiento de indicadores de SST (tasas de accidentalidad, enfermedades, peligros identificados), auditorías internas periódicas y revisión por la alta dirección.</p></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">10</span><span class="accordion-header-label">Mejora — Incidentes y acciones correctivas</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Investigar incidentes y no conformidades, determinar causas raíz e implementar acciones correctivas. La mejora continua del SGSSyT es el objetivo final.</p></div></div></div>
+      </div>
+    </div><!-- /panel-iso45001 -->
+
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 4: ISO 14001
+    ══════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-iso14001" role="tabpanel"
+         aria-labelledby="tab-iso14001" aria-hidden="true" style="display:none">
+
+      <div class="norm-panel-layout iso-enh-layout">
+        <div class="norm-panel-info">
+          <span class="norm-badge norm-badge--14001 norm-badge--lg">ISO 14001:2015</span>
+          <h3>¿Qué es ISO 14001?</h3>
+          <p>
+            ISO 14001:2015 establece los requisitos para un <strong>Sistema de Gestión Ambiental (SGA)</strong>. Ayuda a las organizaciones a mejorar su desempeño ambiental mediante el control de sus aspectos e impactos ambientales, el cumplimiento de requisitos legales y el logro de objetivos ambientales.
+          </p>
+          <p>
+            En términos sencillos: proporciona un marco para que las empresas <em>gestionen de manera responsable su relación con el medio ambiente</em>: qué recursos consumen, qué emisiones generan, qué residuos producen y cómo minimizan su impacto durante todo el ciclo de vida de sus productos y servicios.
+          </p>
+          <p>
+            Introduce la <strong>perspectiva del ciclo de vida</strong>: considerar los impactos ambientales desde la extracción de materias primas hasta el fin de vida del producto.
+          </p>
+        </div>
+
+        <!-- Diagrama: Ciclo Ambiental -->
+        <div class="norm-diagram-wrapper iso-enh-diagram-box">
+          <p class="norm-diagram-title">Ciclo del Sistema de Gestión Ambiental</p>
+          <svg class="norm-diagram-svg iso-enh-svg" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Diagrama del ciclo ambiental: Aspectos, Impactos, Objetivos y Mejora">
+            <defs>
+              <marker id="arr14" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#0D9488"/>
+              </marker>
+            </defs>
+            <!-- 4 nodos en cuadrado con flechas circulares -->
+            <!-- Arriba izq: Aspectos -->
+            <rect x="20"  y="20"  width="110" height="55" rx="12" fill="#0D9488" opacity="0.9"/>
+            <text x="75"  y="43"  text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="white">Aspectos</text>
+            <text x="75"  y="57"  text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="rgba(255,255,255,0.8)">Ambientales</text>
+            <!-- Arriba der: Impactos -->
+            <rect x="170" y="20"  width="110" height="55" rx="12" fill="#0085CA" opacity="0.9"/>
+            <text x="225" y="43"  text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="white">Impactos</text>
+            <text x="225" y="57"  text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="rgba(255,255,255,0.8)">Ambientales</text>
+            <!-- Abajo der: Objetivos -->
+            <rect x="170" y="195" width="110" height="55" rx="12" fill="#7C3AED" opacity="0.85"/>
+            <text x="225" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="white">Objetivos</text>
+            <text x="225" y="232" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="rgba(255,255,255,0.8)">Ambientales</text>
+            <!-- Abajo izq: Mejora -->
+            <rect x="20"  y="195" width="110" height="55" rx="12" fill="#EA580C" opacity="0.85"/>
+            <text x="75"  y="218" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="white">Mejora</text>
+            <text x="75"  y="232" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="rgba(255,255,255,0.8)">Continua</text>
+            <!-- Flechas circulares -->
+            <path d="M 130,47 L 170,47" stroke="#0D9488" stroke-width="2" marker-end="url(#arr14)" fill="none"/>
+            <path d="M 225,75  L 225,195" stroke="#0085CA" stroke-width="2" marker-end="url(#arr14)" fill="none"/>
+            <path d="M 170,222 L 130,222" stroke="#7C3AED" stroke-width="2" marker-end="url(#arr14)" fill="none"/>
+            <path d="M 75,195  L 75,75" stroke="#EA580C" stroke-width="2" marker-end="url(#arr14)" fill="none"/>
+            <!-- PHVA label central -->
+            <rect x="110" y="108" width="80" height="40" rx="10" fill="white" stroke="#CBD5E1" stroke-width="1"/>
+            <text x="150" y="124" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="#0B2545">SGA</text>
+            <text x="150" y="138" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="#64748B">ISO 14001</text>
+            <!-- Etiquetas de flechas -->
+            <text x="150" y="40"  text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="#64748B">evalúa</text>
+            <text x="250" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="#64748B">define</text>
+            <text x="150" y="215" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="#64748B">alcanza</text>
+            <text x="48"  y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="#64748B">genera</text>
+          </svg>
+        </div>
+      </div>
+
+      <h4 class="norm-structure-title">Estructura de la Norma por Numerales</h4>
+      <div class="accordion" role="list">
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">1</span><span class="accordion-header-label">Objeto y campo de aplicación</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Proporciona a las organizaciones un marco para proteger el medio ambiente y responder a las condiciones ambientales cambiantes, mejorando el desempeño ambiental y cumpliendo los requisitos legales aplicables.</p></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">4</span><span class="accordion-header-label">Contexto de la organización</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">4.1</span><span class="accordion-subitem-text">Comprensión de la organización y su contexto: factores ambientales internos/externos relevantes.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">4.2</span><span class="accordion-subitem-text">Comprensión de las necesidades de las partes interesadas: comunidades, reguladores, clientes y su relación con el ambiente.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">4.3</span><span class="accordion-subitem-text">Alcance del SGA: actividades, productos y servicios cubiertos, incluyendo la perspectiva del ciclo de vida.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">4.4</span><span class="accordion-subitem-text">Sistema de gestión ambiental: establecer, implementar, mantener y mejorar el SGA.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">5</span><span class="accordion-header-label">Liderazgo y política ambiental</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>La alta dirección debe liderar el SGA, establecer una política ambiental con compromisos de protección, cumplimiento legal, mejora continua y prevención de la contaminación, y asignar responsabilidades claras.</p></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">6</span><span class="accordion-header-label">Planificación — Aspectos e impactos ambientales</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">6.1.1</span><span class="accordion-subitem-text">General: identificar riesgos y oportunidades ambientales.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.1.2</span><span class="accordion-subitem-text"><strong>Aspectos ambientales:</strong> identificar todas las interacciones de las actividades de la organización con el ambiente (emisiones, vertimientos, residuos, consumo de recursos, etc.) y determinar cuáles son significativos.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.1.3</span><span class="accordion-subitem-text">Requisitos legales y otros: identificar y cumplir la legislación ambiental aplicable.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.2</span><span class="accordion-subitem-text">Objetivos ambientales: metas medibles para reducir impactos significativos y mejorar el desempeño ambiental.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">7–8</span><span class="accordion-header-label">Apoyo y Operación (perspectiva del ciclo de vida)</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Control operacional de los aspectos ambientales significativos. La cláusula 8 incluye la perspectiva del ciclo de vida, la gestión de proveedores externos y la preparación ante emergencias ambientales (derrames, incendios, etc.).</p></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">9–10</span><span class="accordion-header-label">Evaluación del desempeño y Mejora continua</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Seguimiento de indicadores ambientales (consumos, emisiones, residuos), auditorías internas, revisión por la dirección y acciones correctivas para no conformidades ambientales. La mejora continua del desempeño ambiental es el objetivo central.</p></div></div></div>
+      </div>
+    </div><!-- /panel-iso14001 -->
+
+
+    <!-- ══════════════════════════════════════════════════════
+         PANEL 5: ISO 19011
+    ══════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-iso19011" role="tabpanel"
+         aria-labelledby="tab-iso19011" aria-hidden="true" style="display:none">
+
+      <div class="norm-panel-layout iso-enh-layout">
+        <div class="norm-panel-info">
+          <span class="norm-badge norm-badge--19011 norm-badge--lg">ISO 19011:2018</span>
+          <h3>¿Qué es ISO 19011?</h3>
+          <p>
+            ISO 19011:2018 proporciona <strong>directrices para la auditoría de sistemas de gestión</strong>. Aplica a cualquier tipo de auditoría (calidad, ambiente, SST, etc.) y es la guía de referencia para organizaciones que necesitan planificar y realizar auditorías internas o gestionar programas de auditoría.
+          </p>
+          <p>
+            En términos sencillos: explica <em>cómo hacer bien una auditoría</em>: qué principios éticos debe seguir un auditor, cómo planificar el programa anual de auditorías, cómo ejecutar una auditoría paso a paso y cómo evaluar la competencia de los auditores.
+          </p>
+          <p>
+            En su versión 2018, incorpora el <strong>enfoque basado en el riesgo</strong> para priorizar los esfuerzos del programa de auditoría donde más se necesitan.
+          </p>
+        </div>
+
+        <!-- Diagrama: Flujo de Auditoría -->
+        <div class="norm-diagram-wrapper iso-enh-diagram-box">
+          <p class="norm-diagram-title">Proceso de Auditoría — ISO 19011</p>
+          <svg class="norm-diagram-svg iso-enh-svg" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Diagrama de flujo del proceso de auditoría según ISO 19011">
+            <defs>
+              <marker id="arr19" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/>
+              </marker>
+            </defs>
+            <!-- 6 pasos en 2 columnas -->
+            <!-- Col izq: Inicio, Preparación, Informe -->
+            <rect x="10"  y="10"  width="120" height="42" rx="8" fill="#7C3AED" opacity="0.9"/>
+            <text x="70"  y="27"  text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Inicio</text>
+            <text x="70"  y="41"  text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.8)">Cl. 6.2</text>
+
+            <rect x="10"  y="109" width="120" height="42" rx="8" fill="#7C3AED" opacity="0.75"/>
+            <text x="70"  y="126" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Preparación</text>
+            <text x="70"  y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.8)">Cl. 6.3</text>
+
+            <rect x="10"  y="208" width="120" height="42" rx="8" fill="#7C3AED" opacity="0.6"/>
+            <text x="70"  y="225" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Informe</text>
+            <text x="70"  y="239" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.8)">Cl. 6.5</text>
+
+            <!-- Col der: Programa, Ejecución, Cierre+Seguimiento -->
+            <rect x="170" y="10"  width="120" height="42" rx="8" fill="#0085CA" opacity="0.9"/>
+            <text x="230" y="27"  text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Programa</text>
+            <text x="230" y="41"  text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.8)">Cl. 5</text>
+
+            <rect x="170" y="109" width="120" height="42" rx="8" fill="#0D9488" opacity="0.9"/>
+            <text x="230" y="126" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Ejecución</text>
+            <text x="230" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.8)">Cl. 6.4</text>
+
+            <rect x="170" y="208" width="120" height="42" rx="8" fill="#EA580C" opacity="0.85"/>
+            <text x="230" y="222" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Cierre y</text>
+            <text x="230" y="236" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Seguimiento</text>
+
+            <!-- Flechas de flujo -->
+            <path d="M 70,52  L 70,109" stroke="#7C3AED" stroke-width="1.8" marker-end="url(#arr19)" fill="none"/>
+            <path d="M 70,151 L 70,208" stroke="#7C3AED" stroke-width="1.8" marker-end="url(#arr19)" fill="none"/>
+            <path d="M 130,31 L 170,31" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr19)" fill="none" stroke-dasharray="4,3"/>
+            <path d="M 170,130 L 130,130" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr19)" fill="none" stroke-dasharray="4,3"/>
+            <path d="M 130,229 L 170,229" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr19)" fill="none" stroke-dasharray="4,3"/>
+            <path d="M 230,52  L 230,109" stroke="#0085CA" stroke-width="1.8" marker-end="url(#arr19)" fill="none"/>
+            <path d="M 230,151 L 230,208" stroke="#0D9488" stroke-width="1.8" marker-end="url(#arr19)" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <h4 class="norm-structure-title">Estructura de la Norma por Numerales</h4>
+      <div class="accordion" role="list">
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">1–3</span><span class="accordion-header-label">Objeto, Referencias y Términos</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Establece las directrices para todo tipo de auditoría de sistemas de gestión, incluyendo auditorías internas, de segunda y de tercera parte. Define términos clave como <em>auditor líder, hallazgo, conclusión, criterio y evidencia de auditoría</em>.</p></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">4</span><span class="accordion-header-label">Principios de auditoría</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Los 7 principios que guían el comportamiento del auditor y la validez de sus resultados:</p><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">a</span><span class="accordion-subitem-text"><strong>Integridad:</strong> base del profesionalismo; actuar con honestidad y responsabilidad.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">b</span><span class="accordion-subitem-text"><strong>Presentación ecuánime:</strong> reportar los hallazgos fielmente, sin sesgo.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">c</span><span class="accordion-subitem-text"><strong>Debido cuidado profesional:</strong> actuar con diligencia y buen juicio.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">d</span><span class="accordion-subitem-text"><strong>Confidencialidad:</strong> proteger la información sensible.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">e</span><span class="accordion-subitem-text"><strong>Independencia:</strong> libre de conflictos de interés para garantizar objetividad.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">f</span><span class="accordion-subitem-text"><strong>Enfoque basado en la evidencia:</strong> conclusiones respaldadas por evidencia verificable.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">g</span><span class="accordion-subitem-text"><strong>Enfoque basado en el riesgo (nuevo en 2018):</strong> priorizar el esfuerzo de auditoría según el riesgo.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">5</span><span class="accordion-header-label">Gestión de un programa de auditoría</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">5.1–5.3</span><span class="accordion-subitem-text">Establecer objetivos del programa de auditoría y evaluar sus riesgos y oportunidades.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">5.4–5.5</span><span class="accordion-subitem-text">Establecer e implementar el programa: recursos, procedimientos, cronograma anual y selección del equipo auditor.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">5.6–5.7</span><span class="accordion-subitem-text">Seguimiento y revisión del programa: evaluar si se lograron los objetivos y mejorar el programa.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">6</span><span class="accordion-header-label">Realización de una auditoría</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><div class="accordion-subitems"><div class="accordion-subitem"><span class="accordion-subitem-num">6.2</span><span class="accordion-subitem-text"><strong>Inicio:</strong> establecer contacto inicial, determinar la viabilidad, nombrar el equipo auditor y preparar el plan de auditoría.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.3</span><span class="accordion-subitem-text"><strong>Preparación:</strong> revisión de documentos, preparación de listas de verificación y asignación de tareas al equipo.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.4</span><span class="accordion-subitem-text"><strong>Ejecución:</strong> reunión de apertura, recopilación de evidencias mediante entrevistas/observaciones/revisión de registros, generación de hallazgos.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.5</span><span class="accordion-subitem-text"><strong>Informe:</strong> preparar y distribuir el informe de auditoría con hallazgos, conclusiones y no conformidades.</span></div><div class="accordion-subitem"><span class="accordion-subitem-num">6.6–6.7</span><span class="accordion-subitem-text"><strong>Cierre y seguimiento:</strong> acordar con el cliente las acciones correctivas y hacer seguimiento a su implementación.</span></div></div></div></div></div>
+        <div class="accordion-item"><button class="accordion-header" aria-expanded="false"><span class="accordion-num">7</span><span class="accordion-header-label">Competencia y evaluación de auditores</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="accordion-body"><div class="accordion-body-inner"><p>Define los conocimientos, habilidades y atributos personales que debe tener un auditor. Incluye métodos para evaluar la competencia (revisión de registros, retroalimentación, evaluación del desempeño en campo) y el mantenimiento y mejora continua de esa competencia.</p></div></div></div>
+      </div>
+    </div><!-- /panel-iso19011 -->
+
+  </div><!-- /container -->
+</section><!-- /normas -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECCIÓN 3: VIDEO GRUPAL
+════════════════════════════════════════════════════════════ -->
+<section id="caso" class="section caso" aria-labelledby="caso-heading">
+  <div class="container">
+
+    <div class="section-header fade-in">
+      <div class="section-divider" aria-hidden="true"></div>
+      <h2 id="caso-heading">Video Grupal — Diálogo sobre las Normas ISO</h2>
+      <p class="section-subtitle">
+        Exposición dialogada del equipo sobre cada una de las normas trabajadas.
+      </p>
+    </div>
+
+    <!-- Tarjeta centrada y ancha con video + guion -->
+    <div class="fade-in fade-in-delay-1" style="max-width: 840px; margin: 0 auto;">
+
+      <!-- Reproductor 16:9 en estado pendiente -->
+      <div class="caso__video-wrapper">
+        <div class="video-container">
+          <!-- OVERLAY — Visible mientras no haya URL de YouTube -->
+          <div class="video-overlay" id="caso-overlay">
+            <div class="video-overlay__icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+              </svg>
+            </div>
+            <h3 class="video-overlay__title">Video Grupal — Diálogo sobre las Normas ISO</h3>
+            <p class="video-overlay__hint">
+              Agrega el ID del video de YouTube en el atributo<br>
+              <code>data-youtube-id</code> del iframe para activarlo.
+            </p>
+            <span class="video-overlay__badge">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              Pendiente: añadir URL de YouTube
+            </span>
+          </div>
+          <!-- EDITAR: Reemplaza el valor vacío por el ID del video grupal de YouTube -->
+          <iframe id="caso-iframe"
+                  data-youtube-id=""
+                  data-title="Video Grupal — Diálogo sobre las Normas ISO"
+                  src=""
+                  title="Video Grupal"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Bloque del guion y orden de intervención -->
+      <div style="margin-top: 2rem; background: #FFFFFF; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 24px rgba(11,37,69,0.08); border: 1px solid #E2E8F0;">
+        <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; color: #0B2545; margin: 0 0 1.25rem;">
+          Guion y orden de intervención del diálogo
+        </h3>
+        <ol style="margin: 0; padding-left: 0; list-style: none; font-family: 'Inter', sans-serif; color: #334155; font-size: 0.95rem;">
+
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">
+            <span><strong style="color: #0B2545;">1. Juan Erazo</strong></span>
+            <span style="background: #EFF8FF; color: #0085CA; font-weight: 600; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Presentación general de la página web</span>
+          </li>
+
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">
+            <span><strong style="color: #0B2545;">2. Cristóbal Arteaga</strong></span>
+            <span style="background: #EFF8FF; color: #0085CA; font-weight: 600; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Norma 9000</span>
+          </li>
+
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">
+            <span><strong style="color: #0B2545;">3. Jeison Lopez</strong></span>
+            <span style="background: #EFF8FF; color: #0085CA; font-weight: 600; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Norma 9001</span>
+          </li>
+
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">
+            <span><strong style="color: #0B2545;">4. Eileen Sanjuan</strong></span>
+            <span style="background: #EFF8FF; color: #0085CA; font-weight: 600; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Norma 45001</span>
+          </li>
+
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">
+            <span><strong style="color: #0B2545;">5. Yohan Trejo</strong></span>
+            <span style="background: #EFF8FF; color: #0085CA; font-weight: 600; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Norma 14001</span>
+          </li>
+
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">
+            <span><strong style="color: #0B2545;">6. Karen Guaca</strong></span>
+            <span style="background: #EFF8FF; color: #0085CA; font-weight: 600; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Norma 19011</span>
+          </li>
+
+        </ol>
+      </div>
+
+    </div><!-- /tarjeta centrada -->
+  </div><!-- /container -->
+</section><!-- /caso -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECCIÓN 4: VIDEOS INDIVIDUALES
+════════════════════════════════════════════════════════════ -->
+<section id="videos" class="section videos" aria-labelledby="videos-heading">
+  <div class="container">
+
+    <div class="section-header fade-in">
+      <div class="section-divider" aria-hidden="true"></div>
+      <h2 id="videos-heading">Videos Individuales</h2>
+      <p class="section-subtitle">
+        Cada integrante realiza una reflexión breve sobre lo aprendido en la asignatura o en el tema trabajado.
+      </p>
+    </div>
+
+    <div class="videos-grid">
+
+      <!-- ── INTEGRANTE 1 ── -->
+      <article class="video-card fade-in fade-in-delay-1">
+        <div class="video-card__header">
+          <div class="video-card__avatar" aria-hidden="true">1</div>
+          <div class="video-card__info">
+            <h3 class="video-card__name">Juan Francisco Erazo Ciro</h3>
+            <span class="video-card__number">Integrante 1</span>
+          </div>
+        </div>
+        <div class="video-card__player">
+          <div class="video-card__overlay" id="overlay-int1">
+            <div class="video-card__overlay-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+            </div>
+            <span class="video-card__overlay-label">Pendiente — Agrega ID YouTube</span>
+          </div>
+          <iframe id="iframe-int1"
+                  data-youtube-id=""
+                  data-title="Video Integrante 1"
+                  src="" title="Video Integrante 1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card__footer">
+          <span class="video-card__q-label">Pregunta respondida</span>
+          <p class="video-card__question">«¿Qué aprendí de este ejercicio?»</p>
+          <p class="video-card__question video-card__question--placeholder">[EDITAR: Idea clave o norma trabajada]</p>
+        </div>
+      </article>
+
+      <!-- ── INTEGRANTE 2 ── -->
+      <article class="video-card fade-in fade-in-delay-2">
+        <div class="video-card__header">
+          <div class="video-card__avatar" aria-hidden="true">2</div>
+          <div class="video-card__info">
+            <h3 class="video-card__name">Yohan David Trejo Villa</h3>
+            <span class="video-card__number">Integrante 2</span>
+          </div>
+        </div>
+        <div class="video-card__player">
+          <div class="video-card__overlay" id="overlay-int2">
+            <div class="video-card__overlay-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+            </div>
+            <span class="video-card__overlay-label">Pendiente — Agrega ID YouTube</span>
+          </div>
+          <iframe id="iframe-int2"
+                  data-youtube-id=""
+                  data-title="Video Integrante 2"
+                  src="" title="Video Integrante 2"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card__footer">
+          <span class="video-card__q-label">Pregunta respondida</span>
+          <p class="video-card__question">«¿Qué aprendí de este ejercicio?»</p>
+          <p class="video-card__question video-card__question--placeholder">[EDITAR: Idea clave o norma trabajada]</p>
+        </div>
+      </article>
+
+      <!-- ── INTEGRANTE 3 ── -->
+      <article class="video-card fade-in fade-in-delay-3">
+        <div class="video-card__header">
+          <div class="video-card__avatar" aria-hidden="true">3</div>
+          <div class="video-card__info">
+            <h3 class="video-card__name">Jeison Stiveen Lopez Rubiano</h3>
+            <span class="video-card__number">Integrante 3</span>
+          </div>
+        </div>
+        <div class="video-card__player">
+          <div class="video-card__overlay" id="overlay-int3">
+            <div class="video-card__overlay-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+            </div>
+            <span class="video-card__overlay-label">Pendiente — Agrega ID YouTube</span>
+          </div>
+          <iframe id="iframe-int3"
+                  data-youtube-id=""
+                  data-title="Video Integrante 3"
+                  src="" title="Video Integrante 3"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card__footer">
+          <span class="video-card__q-label">Pregunta respondida</span>
+          <p class="video-card__question">«¿Qué aprendí de este ejercicio?»</p>
+          <p class="video-card__question video-card__question--placeholder">[EDITAR: Idea clave o norma trabajada]</p>
+        </div>
+      </article>
+
+      <!-- ── INTEGRANTE 4 ── -->
+      <article class="video-card fade-in fade-in-delay-4">
+        <div class="video-card__header">
+          <div class="video-card__avatar" aria-hidden="true">4</div>
+          <div class="video-card__info">
+            <h3 class="video-card__name">Karen Mishel Guaca Ortiz</h3>
+            <span class="video-card__number">Integrante 4</span>
+          </div>
+        </div>
+        <div class="video-card__player">
+          <div class="video-card__overlay" id="overlay-int4">
+            <div class="video-card__overlay-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+            </div>
+            <span class="video-card__overlay-label">Pendiente — Agrega ID YouTube</span>
+          </div>
+          <iframe id="iframe-int4"
+                  data-youtube-id=""
+                  data-title="Video Integrante 4"
+                  src="" title="Video Integrante 4"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card__footer">
+          <span class="video-card__q-label">Pregunta respondida</span>
+          <p class="video-card__question">«¿Qué aprendí de este ejercicio?»</p>
+          <p class="video-card__question video-card__question--placeholder">[EDITAR: Idea clave o norma trabajada]</p>
+        </div>
+      </article>
+
+      <!-- ── INTEGRANTE 5 ── -->
+      <article class="video-card fade-in fade-in-delay-5">
+        <div class="video-card__header">
+          <div class="video-card__avatar" aria-hidden="true">5</div>
+          <div class="video-card__info">
+            <h3 class="video-card__name">Eileen Daniela Sanjuan Fuli</h3>
+            <span class="video-card__number">Integrante 5</span>
+          </div>
+        </div>
+        <div class="video-card__player">
+          <div class="video-card__overlay" id="overlay-int5">
+            <div class="video-card__overlay-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+            </div>
+            <span class="video-card__overlay-label">Pendiente — Agrega ID YouTube</span>
+          </div>
+          <iframe id="iframe-int5"
+                  data-youtube-id=""
+                  data-title="Video Integrante 5"
+                  src="" title="Video Integrante 5"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card__footer">
+          <span class="video-card__q-label">Pregunta respondida</span>
+          <p class="video-card__question">«¿Qué aprendí de este ejercicio?»</p>
+          <p class="video-card__question video-card__question--placeholder">[EDITAR: Idea clave o norma trabajada]</p>
+        </div>
+      </article>
+
+      <!-- ── INTEGRANTE 6 ── -->
+      <article class="video-card fade-in fade-in-delay-1">
+        <div class="video-card__header">
+          <div class="video-card__avatar" aria-hidden="true">6</div>
+          <div class="video-card__info">
+            <h3 class="video-card__name">Cristóbal Arteaga Arteaga Moreno</h3>
+            <span class="video-card__number">Integrante 6</span>
+          </div>
+        </div>
+        <div class="video-card__player">
+          <div class="video-card__overlay" id="overlay-int6">
+            <div class="video-card__overlay-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+            </div>
+            <span class="video-card__overlay-label">Pendiente — Agrega ID YouTube</span>
+          </div>
+          <iframe id="iframe-int6"
+                  data-youtube-id=""
+                  data-title="Video Integrante 6"
+                  src="" title="Video Integrante 6"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card__footer">
+          <span class="video-card__q-label">Pregunta respondida</span>
+          <p class="video-card__question">«¿Qué aprendí de este ejercicio?»</p>
+          <p class="video-card__question video-card__question--placeholder">[EDITAR: Idea clave o norma trabajada]</p>
+        </div>
+      </article>
+
+    </div><!-- /videos-grid -->
+  </div><!-- /container -->
+</section><!-- /videos -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECCIÓN 5: REFERENCIAS APA 7ª EDICIÓN
+════════════════════════════════════════════════════════════ -->
+<section id="referencias" class="section referencias" aria-labelledby="ref-heading">
+  <div class="container">
+
+    <div class="section-header fade-in">
+      <div class="section-divider" aria-hidden="true"></div>
+      <h2 id="ref-heading">Referencias Bibliográficas</h2>
+      <p class="section-subtitle">
+        Formato APA 7.ª edición con sangría francesa.
+      </p>
+    </div>
+
+    <div class="ref-wrapper fade-in fade-in-delay-1">
+      <div class="ref-header">
+        <div class="ref-header-icon" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+          </svg>
+        </div>
+        <div>
+          <div class="ref-header-title">Referencias Bibliográficas</div>
+          <div class="ref-header-subtitle">APA 7.ª edición — Sangría francesa</div>
+        </div>
+      </div>
+
+      <ol class="ref-list" aria-label="Lista de referencias bibliográficas">
+
+        <li class="ref-item">
+          International Organization for Standardization. (2015). <span class="ref-title-italic">Sistemas de gestión de la calidad — Fundamentos y vocabulario</span> (NTC ISO 9000:2015). ISO. <a href="https://www.iso.org/standard/45481.html" target="_blank" rel="noopener noreferrer" aria-label="Enlace externo: ISO 9000 en iso.org">https://www.iso.org/standard/45481.html</a>
+        </li>
+
+        <li class="ref-item">
+          International Organization for Standardization. (2015). <span class="ref-title-italic">Sistemas de gestión de la calidad — Requisitos</span> (ISO 9001:2015). ISO. <a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener noreferrer" aria-label="Enlace externo: ISO 9001 en iso.org">https://www.iso.org/standard/62085.html</a>
+        </li>
+
+        <li class="ref-item">
+          International Organization for Standardization. (2018). <span class="ref-title-italic">Sistemas de gestión de la seguridad y salud en el trabajo — Requisitos con orientación para su uso</span> (ISO 45001:2018). ISO. <a href="https://www.iso.org/standard/63787.html" target="_blank" rel="noopener noreferrer" aria-label="Enlace externo: ISO 45001 en iso.org">https://www.iso.org/standard/63787.html</a>
+        </li>
+
+        <li class="ref-item">
+          International Organization for Standardization. (2015). <span class="ref-title-italic">Sistemas de gestión ambiental — Requisitos con orientación para su uso</span> (ISO 14001:2015). ISO. <a href="https://www.iso.org/standard/60857.html" target="_blank" rel="noopener noreferrer" aria-label="Enlace externo: ISO 14001 en iso.org">https://www.iso.org/standard/60857.html</a>
+        </li>
+
+        <li class="ref-item">
+          International Organization for Standardization. (2018). <span class="ref-title-italic">Directrices para la auditoría de los sistemas de gestión</span> (ISO 19011:2018). ISO. <a href="https://www.iso.org/standard/70118.html" target="_blank" rel="noopener noreferrer" aria-label="Enlace externo: ISO 19011 en iso.org">https://www.iso.org/standard/70118.html</a>
+        </li>
+
+        <li class="ref-item">
+          Instituto Colombiano de Normas Técnicas y Certificación (ICONTEC). (2015). <span class="ref-title-italic">Norma Técnica Colombiana NTC-ISO 9001: Sistemas de gestión de la calidad. Requisitos</span>. ICONTEC. <a href="https://www.icontec.org" target="_blank" rel="noopener noreferrer" aria-label="Enlace externo: ICONTEC">https://www.icontec.org</a>
+        </li>
+
+        <li class="ref-item">
+          Camisón, C., Cruz, S., &amp; González, T. (2007). <span class="ref-title-italic">Gestión de la calidad: Conceptos, enfoques, modelos y sistemas</span>. Pearson Educación.
+        </li>
+
+        <li class="ref-item">
+          Heras-Saizarbitoria, I., &amp; Boiral, O. (2013). ISO 9001 and ISO 14001: Towards a research agenda on management system standards. <span class="ref-title-italic">International Journal of Management Reviews, 15</span>(1), 47–65. <a href="https://doi.org/10.1111/j.1468-2370.2012.00334.x" target="_blank" rel="noopener noreferrer" aria-label="Enlace externo: artículo en DOI">https://doi.org/10.1111/j.1468-2370.2012.00334.x</a>
+        </li>
+
+      </ol>
+
+      <div class="ref-note">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
+        </svg>
+        <p>Las referencias siguen el formato de la <em>Publication Manual of the American Psychological Association</em> (7.ª ed., 2020) con sangría francesa (hanging indent). Las normas ISO pueden adquirirse directamente en <a href="https://www.iso.org" target="_blank" rel="noopener">iso.org</a> o a través del organismo nacional de normalización.</p>
+      </div>
+    </div>
+
+  </div>
+</section><!-- /referencias -->
+
+</main><!-- /main -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container site-footer__inner">
+    <span class="site-footer__logo">ISO Gestión</span>
+    <p class="site-footer__description">
+      Proyecto académico sobre normas internacionales de gestión. Contenido elaborado con fines educativos.
+    </p>
+    <p class="site-footer__description">
+      <strong>Integrantes:</strong> Juan Francisco Erazo Ciro · Yohan David Trejo Villa · Jeison Stiveen Lopez Rubiano · Karen Mishel Guaca Ortiz · Eileen Daniela Sanjuan Fuli · Cristóbal Arteaga Arteaga Moreno
+    </p>
+    <div class="site-footer__norms" aria-label="Normas cubiertas">
+      <span class="site-footer__norm-tag">NTC ISO 9000</span>
+      <span class="site-footer__norm-tag">ISO 9001</span>
+      <span class="site-footer__norm-tag">ISO 45001</span>
+      <span class="site-footer__norm-tag">ISO 14001</span>
+      <span class="site-footer__norm-tag">ISO 19011</span>
+    </div>
+    <hr class="site-footer__divider" aria-hidden="true"/>
+    <p class="site-footer__credits">
+      Elaborado con HTML5 · CSS3 · JavaScript Vanilla &nbsp;|&nbsp; APA 7.ª edición &nbsp;|&nbsp; SVG vectorial
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════════════ -->
+<script src="js/nav.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/accordion.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/videos.js"></script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPT LOCAL: Planeta giratorio con esferas orbitando
+     (IIFE aislado, prefijo heroGlobe para evitar conflictos)
+════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  var stage = document.getElementById('heroGlobe');
+  var canvas = document.getElementById('heroGlobeCanvas');
+  if (!stage || !canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var orbs = stage.querySelectorAll('.hero-globe__orbiter');
+  if (!orbs.length) return;
+
+  var W = 0, H = 0, dpr = 1;
+  var tilt = -0.35;
+  var rot = 0, orbit = 0;
+
+  /* Esfera de Fibonacci para distribución uniforme de puntos */
+  var N = 1500, pts = [];
+  for (var i = 0; i < N; i++) {
+    var y = 1 - (i / (N - 1)) * 2;
+    var r = Math.sqrt(Math.max(0, 1 - y * y));
+    var th = i * 2.39996;
+    var x = Math.cos(th) * r;
+    var z = Math.sin(th) * r;
+    var lat = Math.asin(y);
+    var lon = Math.atan2(z, x);
+    var noise = Math.sin(lon * 2.3 + 1) * Math.cos(lat * 3.1) +
+                Math.sin(lon * 4.7 - lat * 2.2) * 0.55;
+    pts.push({ x: x, y: y, z: z, land: noise > 0.15 });
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = stage.clientWidth;
+    H = stage.clientHeight || W;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+  }
+
+  function render() {
+    if (!W || !H) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
+    var cx = W / 2, cy = H / 2;
+    var R = Math.min(W, H) * 0.26;
+
+    /* Halo (color #0085CA) */
+    var halo = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, R * 1.75);
+    halo.addColorStop(0, 'rgba(0,133,202,0.32)');
+    halo.addColorStop(1, 'rgba(0,133,202,0)');
+    ctx.fillStyle = halo;
+    ctx.beginPath(); ctx.arc(cx, cy, R * 1.75, 0, Math.PI * 2); ctx.fill();
+
+    /* Océano (paleta #0B2545 con degradado sutil) */
+    var sea = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R);
+    sea.addColorStop(0, '#1f4a72');
+    sea.addColorStop(0.55, '#122e52');
+    sea.addColorStop(1, '#0B2545');
+    ctx.fillStyle = sea;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+
+    /* Meridianos */
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.lineWidth = 1;
+    for (var k = 0; k < 6; k++) {
+      var a = rot + k * Math.PI / 6;
+      var w = Math.abs(Math.cos(a)) * R;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, w, R, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    /* Paralelos */
+    for (var j = -2; j <= 2; j++) {
+      var yy = cy + Math.sin(j * 0.5) * R;
+      var rr = Math.cos(j * 0.5) * R;
+      ctx.beginPath();
+      ctx.ellipse(cx, yy, rr, rr * 0.18, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    /* Continentes en puntos (#0085CA y #0D9488) */
+    var cr = Math.cos(rot), sr = Math.sin(rot);
+    var ct = Math.cos(tilt), st = Math.sin(tilt);
+    for (var p = 0; p < pts.length; p++) {
+      var pt = pts[p];
+      if (!pt.land) continue;
+      var x1 = pt.x * cr - pt.z * sr;
+      var z1 = pt.x * sr + pt.z * cr;
+      var y2 = pt.y * ct - z1 * st;
+      var z2 = pt.y * st + z1 * ct;
+      if (z2 < 0) continue;
+      ctx.globalAlpha = 0.35 + z2 * 0.6;
+      ctx.fillStyle = z2 > 0.55 ? '#3FB5DA' : '#0085CA';
+      var px = cx + x1 * R;
+      var py = cy + y2 * R;
+      var rad = 0.85 + z2 * 1.25;
+      ctx.beginPath(); ctx.arc(px, py, rad, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    /* Brillo superior */
+    var shine = ctx.createRadialGradient(cx - R * 0.45, cy - R * 0.5, 0, cx - R * 0.45, cy - R * 0.5, R * 0.9);
+    shine.addColorStop(0, 'rgba(255,255,255,0.28)');
+    shine.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = shine;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+
+    /* Anillo de órbita (mitad trasera punteada, tono #0D9488) */
+    var OR = Math.min(W, H) * 0.40;
+    var OT = 0.32;
+    var ringTilt = -0.18;
+    ctx.strokeStyle = 'rgba(13,148,136,0.50)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 8]);
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, OR, OR * OT, ringTilt, Math.PI, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    /* Posicionar las 5 esferas en la órbita */
+    for (var q = 0; q < orbs.length; q++) {
+      var ang = orbit + q * (Math.PI * 2 / orbs.length);
+      var ex = Math.cos(ang) * OR;
+      var ey = Math.sin(ang) * OR * OT;
+      var rx = ex * Math.cos(ringTilt) - ey * Math.sin(ringTilt);
+      var ry = ex * Math.sin(ringTilt) + ey * Math.cos(ringTilt);
+      var depth = Math.sin(ang);
+      var sc = 0.78 + (depth + 1) * 0.16;
+      var o = orbs[q];
+      o.style.transform = 'translate(' + (cx + rx).toFixed(2) + 'px,' + (cy + ry).toFixed(2) + 'px) scale(' + sc.toFixed(3) + ')';
+      o.style.zIndex = depth > 0 ? 6 : 2;
+      o.style.opacity = (0.78 + (depth + 1) * 0.11).toFixed(2);
+    }
+  }
+
+  function loop() {
+    rot += 0.005;
+    orbit += 0.007;
+    render();
+    requestAnimationFrame(loop);
+  }
+
+  /* Clic en cada esfera → abrir pestaña + desplazar a #normas */
+  for (var k2 = 0; k2 < orbs.length; k2++) {
+    (function (btn) {
+      btn.addEventListener('click', function () {
+        var tabName = btn.getAttribute('data-globe-tab');
+        if (!tabName) return;
+        var tabBtn = document.getElementById('tab-' + tabName);
+        if (tabBtn) tabBtn.click();
+        var normsEl = document.getElementById('normas');
+        if (normsEl) {
+          var top = normsEl.getBoundingClientRect().top + window.pageYOffset - 90;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    })(orbs[k2]);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  loop();
+})();
+</script>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPT LOCAL: Flip Cards (ISO 9000) y Jerarquía Interactiva (ISO 45001)
+     (IIFE aislado con IDs/clases únicos para evitar conflictos)
+════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  /* 1. Tarjetas giratorias — 7 Principios ISO 9000 */
+  var flipGrid = document.getElementById('iso9000FlipGrid');
+  if (flipGrid) {
+    var flipCards = flipGrid.querySelectorAll('.iso-flip-card');
+    for (var i = 0; i < flipCards.length; i++) {
+      (function (card) {
+        card.addEventListener('click', function () {
+          var flipped = card.getAttribute('aria-pressed') === 'true';
+          card.setAttribute('aria-pressed', flipped ? 'false' : 'true');
+          card.classList.toggle('is-flipped', !flipped);
+        });
+      })(flipCards[i]);
+    }
+  }
+
+  /* 2. Jerarquía de Controles Interactiva — ISO 45001 */
+  var hierSvg = document.getElementById('iso45001HierSvg');
+  var hierDesc = document.getElementById('iso45001HierDesc');
+  var hierBadge = document.getElementById('iso45001HierBadge');
+  var hierTitle = document.getElementById('iso45001HierTitle');
+  var hierText = document.getElementById('iso45001HierText');
+
+  if (hierSvg && hierDesc && hierTitle && hierText) {
+    var levels = hierSvg.querySelectorAll('.iso-hier-level');
+
+    function selectHierLevel(target) {
+      for (var j = 0; j < levels.length; j++) {
+        var lvl = levels[j];
+        var isCurrent = lvl === target;
+        lvl.classList.toggle('is-selected', isCurrent);
+        lvl.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+      }
+      var badge = target.getAttribute('data-hier-badge') || '';
+      var color = target.getAttribute('data-hier-color') || '#EA580C';
+      var title = target.getAttribute('data-hier-title') || '';
+      var desc = target.getAttribute('data-hier-desc') || '';
+
+      if (hierBadge) hierBadge.textContent = badge;
+      hierTitle.textContent = title;
+      hierText.textContent = desc;
+      hierDesc.style.borderLeftColor = color;
+    }
+
+    for (var k = 0; k < levels.length; k++) {
+      (function (lvl) {
+        lvl.addEventListener('click', function () {
+          selectHierLevel(lvl);
+        });
+        lvl.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectHierLevel(lvl);
+          }
+        });
+      })(levels[k]);
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ciclo PHVA de ISO 9001:2015">
+  <!-- P: Planear -->
+  <path d="M 150,30 A 120,120 0 0,1 270,150 L 208,150 A 58,58 0 0,0 150,92 Z" fill="#0085CA" opacity="0.9"/>
+  <!-- H: Hacer -->
+  <path d="M 270,150 A 120,120 0 0,1 150,270 L 150,208 A 58,58 0 0,0 208,150 Z" fill="#0D9488" opacity="0.9"/>
+  <!-- V: Verificar -->
+  <path d="M 150,270 A 120,120 0 0,1 30,150 L 92,150 A 58,58 0 0,0 150,208 Z" fill="#7C3AED" opacity="0.85"/>
+  <!-- A: Actuar -->
+  <path d="M 30,150 A 120,120 0 0,1 150,30 L 150,92 A 58,58 0 0,0 92,150 Z" fill="#EA580C" opacity="0.85"/>
+
+  <!-- Centro -->
+  <circle cx="150" cy="150" r="52" fill="white"/>
+  <text x="150" y="143" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" font-weight="800" fill="#0B2545">PHVA</text>
+  <text x="150" y="158" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#64748B">ISO 9001</text>
+
+  <!-- Etiquetas cuadrantes -->
+  <text x="218" y="88" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" font-weight="700" fill="white">P</text>
+  <text x="225" y="102" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.9)">Cl. 6-7</text>
+
+  <text x="218" y="216" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" font-weight="700" fill="white">H</text>
+  <text x="218" y="230" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.9)">Cl. 8</text>
+
+  <text x="80" y="216" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" font-weight="700" fill="white">V</text>
+  <text x="80" y="230" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.9)">Cl. 9</text>
+
+  <text x="80" y="88" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" font-weight="700" fill="white">A</text>
+  <text x="80" y="102" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.9)">Cl. 10</text>
+
+  <text x="150" y="172" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#64748B">Cl. 4–5: Contexto y</text>
+  <text x="150" y="181" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#64748B">Liderazgo (soporte)</text>
+</svg>

@@ -1,0 +1,208 @@
+/* ============================================================
+   REFERENCIAS — Bibliografía APA 7ª Edición
+   ============================================================ */
+
+.referencias {
+  background-color: var(--color-white);
+}
+
+/* ── Cabecera de la sección ──────────────────────────────── */
+.referencias .section-header {
+  margin-bottom: var(--sp-10);
+}
+
+/* ── Contenedor de la lista ──────────────────────────────── */
+.ref-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--color-bg);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.ref-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-5) var(--sp-8);
+  background: var(--color-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.ref-header-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ref-header-icon svg {
+  width: 20px;
+  height: 20px;
+  color: rgba(255,255,255,0.7);
+}
+
+.ref-header-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-white);
+  margin: 0;
+}
+
+.ref-header-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.5);
+  margin-top: 2px;
+}
+
+/* ── Lista de Referencias ────────────────────────────────── */
+.ref-list {
+  padding: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.ref-item {
+  /* Sangría francesa APA — primera línea al borde, resto sangradas */
+  padding-left: 2.5rem;
+  text-indent: -2.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.8;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--sp-6);
+}
+
+.ref-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Número de referencia */
+.ref-item::before {
+  content: none; /* Sin numeración visible — APA no la requiere en lista de referencias */
+}
+
+/* DOI / URL como enlace */
+.ref-item a {
+  color: var(--color-primary);
+  word-break: break-all;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ref-item a:hover {
+  color: var(--color-dark);
+}
+
+/* Cursiva para títulos de obras en referencias APA */
+.ref-title-italic {
+  font-style: italic;
+}
+
+/* ── Nota al pie de la sección ───────────────────────────── */
+.ref-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  margin: 0 var(--sp-8) var(--sp-8);
+  padding: var(--sp-4) var(--sp-5);
+  background: rgba(0,133,202,0.06);
+  border: 1px solid rgba(0,133,202,0.15);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.ref-note svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ref-note p {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Footer del sitio ────────────────────────────────────── */
+.site-footer {
+  background: var(--color-dark);
+  padding: var(--sp-10) 0 var(--sp-6);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.site-footer__logo {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+}
+
+.site-footer__description {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.site-footer__divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.site-footer__credits {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+}
+
+.site-footer__credits a {
+  color: rgba(255,255,255,0.5);
+}
+.site-footer__credits a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* Badges de normas en footer */
+.site-footer__norms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  justify-content: center;
+}
+
+.site-footer__norm-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: rgba(255,255,255,0.6);
+}

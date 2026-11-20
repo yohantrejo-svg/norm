@@ -1,0 +1,46 @@
+<svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Proceso de Auditoría según ISO 19011">
+  <defs>
+    <marker id="arr19_file" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/>
+    </marker>
+  </defs>
+
+  <!-- Inicio -->
+  <rect x="10" y="10" width="120" height="42" rx="8" fill="#7C3AED" opacity="0.9"/>
+  <text x="70" y="27" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Inicio</text>
+  <text x="70" y="41" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Cl. 6.2</text>
+
+  <!-- Preparación -->
+  <rect x="10" y="109" width="120" height="42" rx="8" fill="#7C3AED" opacity="0.75"/>
+  <text x="70" y="126" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Preparación</text>
+  <text x="70" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Cl. 6.3</text>
+
+  <!-- Informe -->
+  <rect x="10" y="208" width="120" height="42" rx="8" fill="#7C3AED" opacity="0.6"/>
+  <text x="70" y="225" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Informe</text>
+  <text x="70" y="239" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Cl. 6.5</text>
+
+  <!-- Programa -->
+  <rect x="170" y="10" width="120" height="42" rx="8" fill="#0085CA" opacity="0.9"/>
+  <text x="230" y="27" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Programa</text>
+  <text x="230" y="41" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Cl. 5</text>
+
+  <!-- Ejecución -->
+  <rect x="170" y="109" width="120" height="42" rx="8" fill="#0D9488" opacity="0.9"/>
+  <text x="230" y="126" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Ejecución</text>
+  <text x="230" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Cl. 6.4</text>
+
+  <!-- Cierre y Seguimiento -->
+  <rect x="170" y="208" width="120" height="42" rx="8" fill="#EA580C" opacity="0.85"/>
+  <text x="230" y="222" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Cierre y</text>
+  <text x="230" y="236" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="700" fill="white">Seguimiento</text>
+
+  <!-- Flechas -->
+  <path d="M 70,52 L 70,109" stroke="#7C3AED" stroke-width="1.8" marker-end="url(#arr19_file)" fill="none"/>
+  <path d="M 70,151 L 70,208" stroke="#7C3AED" stroke-width="1.8" marker-end="url(#arr19_file)" fill="none"/>
+  <path d="M 130,31 L 170,31" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr19_file)" fill="none" stroke-dasharray="4,3"/>
+  <path d="M 170,130 L 130,130" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr19_file)" fill="none" stroke-dasharray="4,3"/>
+  <path d="M 130,229 L 170,229" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr19_file)" fill="none" stroke-dasharray="4,3"/>
+  <path d="M 230,52 L 230,109" stroke="#0085CA" stroke-width="1.8" marker-end="url(#arr19_file)" fill="none"/>
+  <path d="M 230,151 L 230,208" stroke="#0D9488" stroke-width="1.8" marker-end="url(#arr19_file)" fill="none"/>
+</svg>

@@ -1,0 +1,63 @@
+<svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de relaciones entre las cinco normas ISO de gestión">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0D9488" opacity="0.8"/>
+    </marker>
+  </defs>
+
+  <!-- Líneas de interconexión -->
+  <line x1="208" y1="102" x2="140" y2="175" stroke="#0D9488" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arr)" opacity="0.7"/>
+  <line x1="292" y1="102" x2="358" y2="175" stroke="#0D9488" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arr)" opacity="0.7"/>
+  <line x1="118" y1="252" x2="148" y2="300" stroke="#0D9488" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arr)" opacity="0.7"/>
+  <line x1="140" y1="248" x2="332" y2="308" stroke="#0D9488" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arr)" opacity="0.7"/>
+  <line x1="358" y1="248" x2="202" y2="308" stroke="#7C3AED" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arr)" opacity="0.6"/>
+  <line x1="372" y1="252" x2="368" y2="300" stroke="#7C3AED" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arr)" opacity="0.6"/>
+
+  <text x="156" y="136" font-family="'Inter',sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle">Vocabulario</text>
+  <text x="348" y="136" font-family="'Inter',sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle">Auditoría</text>
+
+  <!-- NODO: ISO 9000 -->
+  <g class="map-node" data-tab="iso9000">
+    <circle cx="250" cy="68" r="58" fill="#0085CA" opacity="0.95"/>
+    <circle cx="250" cy="68" r="58" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+    <text x="250" y="56" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.8)" letter-spacing="0.08em">NTC ISO</text>
+    <text x="250" y="74" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="20" font-weight="800" fill="white">9000</text>
+    <text x="250" y="90" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9.5" fill="rgba(255,255,255,0.7)">Vocabulario</text>
+  </g>
+
+  <!-- NODO: ISO 9001 -->
+  <g class="map-node" data-tab="iso9001">
+    <circle cx="110" cy="216" r="54" fill="#0B2545" opacity="0.95"/>
+    <circle cx="110" cy="216" r="54" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    <text x="110" y="206" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.75)" letter-spacing="0.06em">ISO</text>
+    <text x="110" y="222" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="20" font-weight="800" fill="white">9001</text>
+    <text x="110" y="238" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9.5" fill="rgba(255,255,255,0.65)">Calidad</text>
+  </g>
+
+  <!-- NODO: ISO 19011 -->
+  <g class="map-node" data-tab="iso19011">
+    <circle cx="390" cy="216" r="54" fill="#7C3AED" opacity="0.9"/>
+    <circle cx="390" cy="216" r="54" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    <text x="390" y="206" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.75)" letter-spacing="0.06em">ISO</text>
+    <text x="390" y="222" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="20" font-weight="800" fill="white">19011</text>
+    <text x="390" y="238" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9.5" fill="rgba(255,255,255,0.65)">Auditoría</text>
+  </g>
+
+  <!-- NODO: ISO 45001 -->
+  <g class="map-node" data-tab="iso45001">
+    <circle cx="175" cy="352" r="54" fill="#EA580C" opacity="0.9"/>
+    <circle cx="175" cy="352" r="54" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    <text x="175" y="342" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.75)" letter-spacing="0.06em">ISO</text>
+    <text x="175" y="358" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="20" font-weight="800" fill="white">45001</text>
+    <text x="175" y="374" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9.5" fill="rgba(255,255,255,0.65)">SST</text>
+  </g>
+
+  <!-- NODO: ISO 14001 -->
+  <g class="map-node" data-tab="iso14001">
+    <circle cx="355" cy="352" r="54" fill="#0D9488" opacity="0.9"/>
+    <circle cx="355" cy="352" r="54" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    <text x="355" y="342" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.75)" letter-spacing="0.06em">ISO</text>
+    <text x="355" y="358" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="20" font-weight="800" fill="white">14001</text>
+    <text x="355" y="374" text-anchor="middle" font-family="'Inter',sans-serif" font-size="9.5" fill="rgba(255,255,255,0.65)">Ambiente</text>
+  </g>
+</svg>
